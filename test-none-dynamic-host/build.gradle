@@ -56,7 +56,8 @@ def createCopyTask(projectName, buildType, name, apkName) {
     def moduleName = split[split.length - 1]
     def outputFile = file("${getBuildDir()}/generated/assets/${name}/${buildType}/${apkName}")
     outputFile.getParentFile().mkdirs()
-    def inputFile = file("${project("${projectName}").getBuildDir()}/outputs/apk/plugin/${buildType}/${moduleName}-plugin-${buildType}.apk")
+    def inputFile = file("${project("${projectName}").getBuildDir()}/intermediates/apk/plugin/${buildType}/${moduleName}-plugin-${buildType}.apk")
+    getLogger().warn("inputFile=${inputFile}, outputFile=${outputFile}")
     return tasks.create("copy${buildType.capitalize()}${name.capitalize()}Task", Copy) {
         group = 'build'
         description = "复制${name}到assets中."
@@ -71,6 +72,6 @@ def createCopyTask(projectName, buildType, name, apkName) {
 
 tasks.whenTaskAdded { task ->
     if (task.name == "generateDebugAssets") {
-        //task.dependsOn createCopyTask(':test-plugin-general-cases', 'debug', 'test-plugin-general-cases', 'plugin.apk')
+        task.dependsOn createCopyTask(':test-plugin-general-cases', 'debug', 'test-plugin-general-cases', 'plugin.apk')
     }
 }

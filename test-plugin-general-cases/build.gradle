@@ -1,6 +1,12 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.tencent.shadow.plugin'
 
+// 覆盖改写 gradle.properties，供模块中覆写项目中变量值；当前不生效
+//project.logger.warn("prev useAndroidX=${project.getProperty('android.useAndroidX')}, enableJetifier=${project.getProperty('android.enableJetifier')}")
+//project.setProperty("android.useAndroidX", false)
+//project.setProperty("android.enableJetifier", false)
+//project.logger.warn("post useAndroidX=${project.getProperty("android.useAndroidX")}, enableJetifier=${project.getProperty("android.enableJetifier")}")
+
 android {
     compileSdkVersion project.COMPILE_SDK_VERSION
 
@@ -57,7 +63,7 @@ dependencies {
 
     //Shadow Transform后业务代码会有一部分实际引用runtime中的类
     //如果不以compileOnly方式依赖，会导致其他Transform或者Proguard找不到这些类
-    pluginCompileOnly 'com.tencent.shadow.core:runtime'
+    pluginCompileOnly "com.tencent.shadow.core:runtime:$shadow_version"
 }
 
 buildscript {
@@ -68,12 +74,13 @@ buildscript {
             google()
             mavenCentral()
         }
+        mavenLocal()
     }
 
     dependencies {
-        classpath 'com.tencent.shadow.core:runtime'
-        classpath 'com.tencent.shadow.core:activity-container'
-        classpath 'com.tencent.shadow.core:gradle-plugin'
+        classpath "com.tencent.shadow.core:runtime:$shadow_version"
+        classpath "com.tencent.shadow.core:activity-container:$shadow_version"
+        classpath "com.tencent.shadow.core:gradle-plugin:$shadow_version"
         classpath "org.javassist:javassist:$javassist_version"
     }
 }
