@@ -42,10 +42,10 @@ dependencies {
     implementation "commons-io:commons-io:$commons_io_android_version"//example复制apk用的.
     implementation "org.slf4j:slf4j-api:$slf4j_version"
 
-    implementation 'com.tencent.shadow.core:common'
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.tencent.shadow.core:loader'
-    implementation 'com.tencent.shadow.core:activity-container'
+    implementation "com.tencent.shadow.core:common:$shadow_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "com.tencent.shadow.core:loader:$shadow_version"
+    implementation "com.tencent.shadow.core:activity-container:$shadow_version"
     implementation project(':custom-view')
     implementation "androidx.test.espresso:espresso-idling-resource:$espresso_version"
     implementation project(':plugin-use-host-code-lib')
@@ -71,6 +71,6 @@ def createCopyTask(projectName, buildType, name, apkName) {
 
 tasks.whenTaskAdded { task ->
     if (task.name == "generateDebugAssets") {
-        task.dependsOn createCopyTask(':test-plugin-general-cases', 'debug', 'test-plugin-general-cases', 'plugin.apk')
+        //task.dependsOn createCopyTask(':test-plugin-general-cases', 'debug', 'test-plugin-general-cases', 'plugin.apk')
     }
 }

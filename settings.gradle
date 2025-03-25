@@ -1,1 +1,3 @@
-include ':app'
+include ':test-none-dynamic-host'
+include ':custom-view'
+include ':plugin-use-host-code-lib'

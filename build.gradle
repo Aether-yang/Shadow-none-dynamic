@@ -1,6 +1,17 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    loadVersions:
+    {// 读取versions.properties到ext中，供项目中直接用变量引用版本号
+        def versions_properties_path = 'gradle/versions.properties'
+        def versions = new Properties()
+        versions.load(file(versions_properties_path).newReader())
+        versions.forEach { key, stringValue ->
+            def value = stringValue?.isInteger() ? stringValue as Integer : stringValue
+            ext.set(key, value)
+        }
+    }
+    apply from: 'gradle/common.gradle'
 
     repositories {
         google()
@@ -22,5 +33,19 @@ allprojects {
         mavenCentral()
         mavenLocal()
         maven { url 'https://jitpack.io' } //jitpack 可用于引用github和gitee
+
+        if (!System.getenv().containsKey("DISABLE_TENCENT_MAVEN_MIRROR")) {
+            maven { url 'https://mirrors.tencent.com/nexus/repository/maven-public/' }
+        }
+        maven {
+            name = "GitHubPackages"
+            url "https://maven.pkg.github.com/tencent/shadow"
+            //一个只读账号兼容Github Packages暂时不支持匿名下载
+            //https://github.community/t/download-from-github-package-registry-without-authentication/14407
+            credentials {
+                username = 'readonlypat'
+                password = '\u0067hp_s3VOOZnLf1bTyvHWblPfaessrVYyEU4JdNbs'
+            }
+        }
     }
 }
