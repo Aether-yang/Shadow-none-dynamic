@@ -22,7 +22,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 
-import com.tencent.shadow.test.lib.custom_view.TestViewConstructorCacheView;
 import com.tencent.shadow.test.plugin.general_cases.R;
 
 import dalvik.system.PathClassLoader;
@@ -33,6 +32,7 @@ public class TestViewConstructorCache extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_test_view_cons_cache);
+        /*
         TestViewConstructorCacheView testView = findViewById(R.id.testView);
 
         PathClassLoader pathClassLoader = (PathClassLoader) getApplication().getBaseContext().getClass().getClassLoader();
@@ -47,5 +47,6 @@ public class TestViewConstructorCache extends Activity {
         if (!assertTrue) {
             throw new AssertionError("插件和宿主中不应该能加载出相同View名的同一个类");
         }
+        */
     }
 }

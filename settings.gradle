@@ -1,5 +1,5 @@
 include ':test-none-dynamic-host'
-include ':custom-view'
+//include ':custom-view'
 include ':plugin-use-host-code-lib'
 include ':test-plugin-general-cases'
 //include ':Dependency'

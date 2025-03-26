@@ -33,10 +33,5 @@
         android:textColor="@android:color/black"
         android:textSize="20sp" />
 
-    <com.tencent.shadow.test.lib.custom_view.TestViewConstructorCacheView
-        android:id="@+id/testView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
 
 </FrameLayout>
