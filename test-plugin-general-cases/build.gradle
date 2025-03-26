@@ -40,9 +40,9 @@ android {
         abortOnError false
     }
 
-    // 将插件的资源ID分区改为和宿主0x7F不同的值
+    // 将插件的资源ID分区改为和宿主0x7F不同的值, minSdkVersion大于26时--package-id必须大于0x7f
     aaptOptions {
-        additionalParameters "--package-id", "0x7E", "--allow-reserved-package-id"
+        additionalParameters "--package-id", "0x80", "--allow-reserved-package-id"
     }
 }
 
