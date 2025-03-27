@@ -2,6 +2,7 @@ include ':test-none-dynamic-host'
 //include ':custom-view'
 include ':plugin-use-host-code-lib'
 include ':test-plugin-general-cases'
+include ':single-plugin-case'
 //include ':Dependency'
 //project(':Dependency').projectDir = new File(settingsDir, '../Dependency')
 //implementation project(':Dependency') //Add in Project/build.gradle dependencies section
