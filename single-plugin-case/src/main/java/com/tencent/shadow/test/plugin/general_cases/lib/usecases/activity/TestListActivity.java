@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -11,6 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.jeanboy.demo.jnitest.NdkTest;
 import com.tencent.shadow.test.plugin.general_cases.R;
 
 import java.util.ArrayList;
@@ -34,6 +37,8 @@ public class TestListActivity extends Activity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.w("MyJni", "onItemClick position=" + position);
+                Log.w("MyJni", "onItemClick getTimestampMillis=" + NdkTest.getTimestampMillis());
                 String className = mItemList.get(position);
                 try {
                     Intent intent = new Intent(TestListActivity.this, Class.forName(className));
