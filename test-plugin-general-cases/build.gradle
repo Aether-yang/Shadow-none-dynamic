@@ -8,6 +8,7 @@ apply plugin: 'com.tencent.shadow.plugin'
 //project.logger.warn("post useAndroidX=${project.getProperty("android.useAndroidX")}, enableJetifier=${project.getProperty("android.enableJetifier")}")
 
 android {
+    namespace "com.tencent.shadow.test.plugin.general_cases"
     compileSdkVersion project.COMPILE_SDK_VERSION
 
     defaultConfig {
